@@ -1,0 +1,67 @@
+<div class="portlet">
+    <div class="portlet-body" style="overflow-x:auto;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <ng-container *ngTemplateOutlet="
+                        headersTmpl || defaultHeaderTemplate;
+                        context: { $implicit: headers }
+                    ">
+                    </ng-container>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd gradeX" *ngFor="let item of items; let i=index" 
+                (click)="clickActions(item)">
+                    <ng-container *ngTemplateOutlet="
+                        rowsTmpl || defaultRowsTemplate;
+                        context: { $implicit: item }
+                    ">
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+        <div class="no-data" *ngIf="items?.length === 0">No Data Available</div>
+    </div>
+</div>
+
+<ng-template #defaultHeaderTemplate let-header>
+    <th *ngFor="let item of header">
+        {{ item.title | translate }}
+    </th>
+</ng-template>
+
+<ng-template #defaultRowsTemplate let-row>
+    <td *ngFor="let item of row.content" [ngSwitch]="item.type">
+        <ng-container *ngSwitchCase="'image'">
+            <img src="{{ item.value }}" class="image" alt="">
+        </ng-container>
+        
+        <ng-container *ngSwitchCase="'status'">
+            <p class="status-box" class="{{item.class}}">{{ item.value }}</p>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'status_payment'">
+            <p class="status-payment" class="{{item.class}}">{{ item.value }}</p>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'price'">
+            <p class="price-box">
+                {{ item.value | formatnumber }}
+                <span>円</span>
+            </p>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'count'">
+            <p class="price-box">
+                {{ item.value | formatnumber }}
+                <span>件</span>
+            </p>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+            {{ item.value }}
+        </ng-container>
+
+    </td>
+</ng-template>

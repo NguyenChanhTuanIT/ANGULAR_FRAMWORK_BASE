@@ -1,0 +1,13 @@
+<div class="popup">
+    <div class="wrapper">
+        <img src="{{ data.image || 'assets/images/icons/ic_warning.svg' }}" alt="delete" class="warning">
+        <div class="popup-item">
+            <p class="title" [ngStyle]="{'margin-bottom': data.message ? '1.6rem' : '3rem'}">{{ (data.title || 'UTILS.CONFIRM_DELETE') | translate}}</p>
+            <p class="description">{{ data.message }}</p>
+        </div>
+        <div class="buttons">
+            <button class="btn btn-secondary border-radius-large btn-cancel" (click)="cancel()" *ngIf="!hideCancelBtn">{{ (data.textBtnCancel || 'UTILS.CANCEL') | translate}}</button>
+            <button class="btn btn-primary hover border-radius-large btn-save" (click)="confirmOK()">{{  (data.textBtnOk || 'UTILS.SAVE') | translate}}</button>
+        </div>
+    </div>
+</div>

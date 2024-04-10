@@ -1,0 +1,32 @@
+<div id="pag" *ngIf="totalPage && totalPage > pageSize">
+	<ul *ngIf="pager && pager['pages']" class="pagination">
+		<li class="pre" [ngClass]="{'disabled': pager['currentPage'] === 1 }">
+			<a (click)="choosepage(1)">
+				<img src="assets/images/icons/ic_double-arrow-left.svg" alt="">
+			</a>
+		</li>
+		<li class="pre" [ngClass]="{'disabled': pager['currentPage'] === 1 }">
+			<a (click)="choosepage(pager.currentPage - 1)">
+				<img src="assets/images/icons/ic_single-arrow-left.svg" alt="">
+			</a>
+		</li>
+
+		<li *ngFor="let page of pager['pages']" 
+			[ngClass]="{ 'active': pager['currentPage'] === page, 'dots': page === '...'}">
+			<a (click)="choosepage(page)">{{page}}</a>
+		</li>
+
+		<li class="next"
+			[ngClass]="{'disabled': pager['currentPage'] === pager['totalPages'] }">
+			<a (click)="choosepage(pager['currentPage'] + 1)">
+				<img src="assets/images/icons/ic_single-arrow-right.svg" alt="">
+			</a>
+		</li>
+		<li class="next"
+			[ngClass]="{'disabled': pager['currentPage'] === pager['totalPages'] }">
+			<a (click)="choosepage(pager['totalPages'])">
+				<img src="assets/images/icons/ic_double-arrow-right.svg" alt="">
+			</a>
+		</li>
+	</ul>
+</div>

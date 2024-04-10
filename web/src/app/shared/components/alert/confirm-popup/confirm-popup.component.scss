@@ -1,0 +1,59 @@
+@import "variables";
+
+.popup {
+    position: fixed;
+    left: 1.6rem;
+    right: 1.6rem;
+    width: calc(100% - 3.2rem);
+    max-width: 34.3rem;
+    margin: 0 auto;
+    padding: 4rem;
+    background: #ffffff;
+    border-radius: 2rem;
+    box-shadow: $box-shadow;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 11;
+
+    .wrapper {
+        .popup-item {
+            margin-bottom: 2.025rem;
+
+            .title {
+                font-family: "NotoSansJP-Bold";
+                font-size: 2.4rem;
+                line-height: 3.4rem;
+                color: #44403c;
+                text-align: center;
+                margin-bottom: 1.6rem;
+            }
+
+            .description {
+                margin: 0 auto;
+                color: #78716c;
+                font-size: 1.4rem;
+                line-height: 2.2rem;
+                text-align: center;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            margin-top: 2.4rem;
+
+            .btn-secondary {
+                // max-width: 10.1rem;
+                margin-right: 1rem;
+                padding: 1.4rem 0;
+            }
+        }
+
+        .warning {
+            width: 8rem;
+            height: 8rem;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 2rem;
+        }
+    }
+}

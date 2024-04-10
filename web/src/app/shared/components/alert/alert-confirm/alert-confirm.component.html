@@ -1,0 +1,35 @@
+<div class="wrap-modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-body">
+            <img *ngIf="alert?.icon" [src]="alert.icon" alt="" class="icon">
+            <h3 [ngStyle]="{'margin-bottom': alert.message ? '1.6rem' : '3rem'}">{{alert.title | translate}}</h3>
+            <p *ngIf="!alert?.arrayMessage">{{alert.message | translate}}</p>
+            <div *ngIf="alert?.arrayMessage">
+                <p *ngFor="let item of alert?.arrayMessage">{{item | translate}}</p>
+            </div>
+            <div class="form" *ngIf="show_input">
+                <input (keyup)="key(text.value)" #text type="text">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary hover border-radius-large"
+            *ngIf="alert.mode == CrudType.CLOSE" (click)="close()">
+                {{ alert.textBtnError || 'UTILS.CLOSE' | translate }}
+            </button>
+            <button class="btn btn-secondary border-radius-large"
+            *ngIf="alert.mode ==CrudType.CONFIRM" (click)="close()">
+                {{ 'UTILS.CANCEL' | translate }}
+            </button>
+            <button class="btn btn-primary hover border-radius-large"
+            *ngIf="alert.mode == CrudType.SAVE || alert.mode == CrudType.CONFIRM" (click)="save()">
+                {{ alert.textBtnConfirm || 'UTILS.SAVE' | translate }}
+            </button>
+            <button class="btn btn-primary hover border-radius-large"
+            *ngIf="alert.mode == CrudType.SUCCESS" (click)="success()">
+                {{ alert.textBtnSuccess || 'UTILS.OK' | translate }}
+            </button>
+        </div>
+    </div>
+
+</div>
